@@ -1,3 +1,12 @@
+(C) 2011 by Miles Shang, see license.
+Adapted for SVG by Patrick Clicqué-Göbel, 2023
+(in collaboration with Sten Vikner & Ken Ramshøj Christensen)
+Latest previous revision of the page: 2024-03-27 by Rowan Ackerman.
+
+Adapted by me (David Garsten) for use in [my linguistics notes repository](https://github.com/dudugan/class-notes).
+
+--------
+
 2011:
 The goal of this project is to create a browser-based, fully local syntax tree generator, for drawing trees as you might find in an introductory linguistics course. Here are a few main features:
 
