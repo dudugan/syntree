@@ -4,31 +4,6 @@
 	<meta name="description" content="A website for producing linguistics syntax trees from formatted Excel Spreadsheets." />
 	<link rel="canonical" href="http://mshang.ca/syntree" />
 	<title>Syntax Tree Generator</title>
-
-	<script>
-		function setTo(to) {
-			switch (to) {
-				case "Alice":
-					document.getElementById("i").value = "^NP\nAlice";
-				break;
-
-				case "AliceAndBob":
-					document.getElementById("i").value = "NP		\nN	|	N\nAlice	and	Bob";
-				break;
-
-				case "Student":
-					document.getElementById("i").value = "S			\n|	VP		\n|	|	NP	\nNP	|	N`	\nN	V	N	^PP\nAlice	is	a student	of physics";
-				break;
-
-				case "Movement":
-					document.getElementById("i").value = "S	\nX_a	Y\nMovement	example <a>";
-				break;
-			}
-			handler();
-			if(location.hostname !== "htmlpreview.github.io")
-				location.reload();
-		}
-	</script>
 </head>
 
 
@@ -95,16 +70,6 @@ This	is 	a wug
 						</div></td>
 					</tr>
 				</table>
-			</div>
-
-			<h3><a href="#">Help</a></h3>
-			<div class="help">
-				<p>Use labelled bracket notation. This app will build the tree as you type and will attempt to close any brackets that you may be missing. Save the image to your computer by right-clicking on it and selecting "Save image as". For more information, including on how to draw movement lines, visit the <a href="https://github.com/mshang/syntree/wiki">wiki</a>.</p>
-				<h3>Examples</h3>
-				<button class="example" onclick="setTo('Alice');">[^NP Alice]</button><br>
-				<button class="example" onclick="setTo('AliceAndBob');">[NP [N Alice] and [N Bob]]</button>
-				<button class="example" onclick="setTo('Student');">[S[NP[N Alice]][VP[V is][NP[N'[N a student][PP^ of physics</button>
-				<button class="example" onclick="setTo('Movement');">[S [X_a Movement] [Y example &lt;a&gt;]]</button>
 			</div>
 		</div></td>
 
