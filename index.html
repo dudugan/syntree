@@ -8,112 +8,45 @@
 
 
 <body>
-	<a href="https://github.com/codeBodger/syntree"><img style="position: absolute; top: 0; right: 10; border: 0;" alt="Fork me on GitHub"></a>
-	<a href="https://github.com/mshang/syntree"><img style="position: absolute; top: 1.5em; right: 10; border: 0;" alt="Fork original on GitHub"></a>
-	<table style="position: absolute; top: 2em;"><tr>
-		<td style="vertical-align: top;"><div id="accordion" style="">
-			<h3><a href="#">Syntax Tree Generator</a></h3>
-			<div style="text-align:left">
-				<textarea id="i" rows="30">S			
+	<!-- INPUT --> 
+	<textarea id="i" rows="30">S			
 NP	VP		
 |	V	^NP	
 This	is 	a wug
-</textarea>
-				(C) 2011 by <a href="http://mshang.ca/">Miles Shang</a>, see <a href="LICENSE.txt">license</a>.<br>
-				(C) 2023 by <a href="https://github.com/abitcreative">Patrick Clicqu&eacute;-G&ouml;bel</a>.<br>
-				(C) 2024 by <a href="https://github.com/codeBodger">Rowan Ackerman</a>.
-			</div>
-			
-			<h3><a href="#">Options</a></h3>
-			<div>	
-				<table>
-					<col width="1*">
-					<col width="1*">
-					<tr>
-						<td colspan="2" align="center"><div id="font-style-radio" class="nobr">
-							<input type="radio" name="font-style" id="serif" value="serif" class="redraw" checked /><label for="serif">Serif</label>
-							<input type="radio" name="font-style" id="sans-serif" value="sans-serif" class="redraw" /><label for="sans-serif">Sans-Serif</label>
-							<input type="radio" name="font-style" id="monospace" value="monospace" class="redraw" /><label for="monospace">Monospace</label>
-						</div></td>
-					</tr>
-					<tr>
-						<td align="center">Terminals:</td>
-						<td align="center">Non-terminals:</td>
-					</tr>
-					<tr>
-						<td align="center"><div id="term-font-check" class="nobr">
-							<input type="checkbox" id="term-bold" class="redraw" /><label for="term-bold">Bold</label>
-							<input type="checkbox" id="term-ital" class="redraw" /><label for="term-ital">Italic</label>
-						</div></td>
-						<td align="center"><div id="nonterm-font-check" class="nobr">
-							<input type="checkbox" id="nonterm-bold" class="redraw" /><label for="nonterm-bold">Bold</label>
-							<input type="checkbox" id="nonterm-ital" class="redraw" /><label for="nonterm-ital">Italic</label>
-						</div></td>
-					</tr>
-					<tr>
-						<td align="left">Font size:</td>
-						<td><div id="font-size-slider"></div></td>
-					</tr>
-					<tr>
-						<td align="left">Height:</td>
-						<td><div id="vert-space-slider"></div></td>
-					</tr>
-					<tr>
-						<td align="left">Width:</td>
-						<td><div id="hor-space-slider"></div></td>
-					</tr>
-					<tr>
-						<td align="center" colspan="2"><div class="nobr">
-							<input type="checkbox" id="color-check" class="redraw" checked /><label for="color-check">Color</label>
-							<input type="checkbox" id="term-lines" class="redraw" checked /><label for="term-lines">Terminal lines</label>
-							<a href="#" id="make-link">Link</a>
-						</div></td>
-					</tr>
-				</table>
-			</div>
-		</div></td>
+</textarea>	
 
-		<td style="vertical-align: top;">
-			<div id="image-goes-here"></div>
-			<div id="out" style="text-align: center; margin-bottom: 1em; visibility: hidden;"></div>
-			<img id="img-out" style="text-align: center; margin-bottom: 1em; visibility: hidden;"></img>
-			<canvas id="canvas" style="visibility: hidden;"></canvas>
-			<img id="img-final"></img>
+	<!-- OPTIONS --> 
+	<input type="radio" name="font-style" id="serif" value="serif" class="redraw" checked /><label for="serif">Serif</label>
+	<input type="radio" name="font-style" id="sans-serif" value="sans-serif" class="redraw" /><label for="sans-serif">Sans-Serif</label>
+	<input type="radio" name="font-style" id="monospace" value="monospace" class="redraw" /><label for="monospace">Monospace</label>
+	<input type="checkbox" id="term-bold" class="redraw" /><label for="term-bold">Bold</label>
+	<input type="checkbox" id="term-ital" class="redraw" /><label for="term-ital">Italic</label>
+	<input type="checkbox" id="nonterm-bold" class="redraw" /><label for="nonterm-bold">Bold</label>
+	<input type="checkbox" id="nonterm-ital" class="redraw" /><label for="nonterm-ital">Italic</label>
+	<div id="font-size-slider"></div>
+	<div id="vert-space-slider"></div>
+	<div id="hor-space-slider"></div>
+	<input type="checkbox" id="color-check" class="redraw" checked /><label for="color-check">Color</label>
+	<input type="checkbox" id="term-lines" class="redraw" checked /><label for="term-lines">Terminal lines</label>
+	<a href="#" id="make-link">Link</a>
 
-			<div style="text-align: center;">
-				<button id="download">Download this tree as an SVG-file</button> or copy and paste the PNG above.  
-			</div>
+	<!-- OUTPUT --> 
+	<div id="image-goes-here"></div>
+	<div id="out" style="text-align: center; margin-bottom: 1em; visibility: hidden;"></div>
+	<img id="img-out" style="text-align: center; margin-bottom: 1em; visibility: hidden;"></img>
+	<canvas id="canvas" style="visibility: hidden;"></canvas>
+	<img id="img-final"></img>
 
-			<div style="text-align: center;">
-				<br>
-				SVG-files can be inserted as pictures in e.g. Microsoft Word or LibreOffice Writer.<br>
-				SVG-files can be also be displayed by browsers like Chrome, Firefox, Opera, Safari, or Microsoft Edge.<br>
-				<br>
-				<font size="-1">(C) 2011 by <a href="http://mshang.ca/">Miles Shang</a>, see <a href="LICENSE.txt">license</a>.<br>
-				Adapted for SVG by <a href="https://github.com/abitcreative">Patrick Clicqu&eacute;-G&ouml;bel</a>, 2023<br> 
-				(in collaboration with <a href="https://pure.au.dk/portal/en/persons/sten.vikner@cc.au.dk">Sten Vikner</a> & <a href="https://pure.au.dk/portal/en/persons/krc@cc.au.dk">Ken Ramsh&oslash;j Christensen</a>)</font><br>
-			</div>
+	<div style="text-align: center;">
+		<button id="download">Download this tree as an SVG-file</button> or copy and paste the PNG above.  
+	</div>
 
-			<div style="text-align: right;">
-				Latest revision of this page: 2024-03-27 by Rowan Ackerman.
-			</div>
-		</td>
-	</tr></table>
+	<style type="text/css">
+		textarea {resize: vertical; width: 100%}
+		#image-goes-here { text-align: center; }
+		img { border: 1px solid #bbbbbb; }
+	</style>
 
-
-<style type="text/css">
-body { font-size: small !important; font-family: sans-serif; margin: 20px; background-color: #ffffff}
-#accordion { margin: 0px auto; width: 500px; text-align: center; }
-table { margin: 0px auto; }
-//.ui-widget { font-size:small !important; }
-td {font-size:small !important;}
-textarea {resize: vertical; width: 100%}
-a.example { text-decoration: none; color: #4183C4!important; }
-.help {text-align: left;}
-#image-goes-here { text-align: center; }
-img { border: 1px solid #bbbbbb; }
-.nobr { white-space: nowrap; }
-</style>
 
 <link type="text/css" href="css/cupertino/jquery-ui-1.8.18.custom.css" rel="stylesheet" />	
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
@@ -121,9 +54,10 @@ img { border: 1px solid #bbbbbb; }
 <script type="text/javascript" src="js/base64.js"></script>
 <script type="text/javascript" src="js/canvas2image.js"></script>
 <script type="text/javascript" src="js/canvas2svg.js"></script>
-<!-- <script type="text/javascript" src="js/fabric.min.js"></script> -->
 <script type="text/javascript" src="js/syntree.js"></script>
 <script type="text/javascript">
+
+	// LAST MADE INPUT SYNTAX
 	function parseRNA(input) {
 		// Rectify the input for use with mshang's tree creator
 		input = input.replace(/\\0/g,"∅").replace(/`/g,"̅");
