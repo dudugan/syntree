@@ -207,7 +207,7 @@ function MovementLine() {
 	this.leftwards = null;
 }
 
-MovementLine.prototype.set_up = function() {
+MovementLine.prototype.set_up = function(vert_space) {
 	this.should_draw = 0;
 	if ((this.tail == null) || (this.head == null)) return;
 	
@@ -324,7 +324,7 @@ function go(str, font_size, term_font, nonterm_font, vert_space, hor_space, colo
 	root.find_movement(movement_lines, root);
 	for (let i = 0; i < movement_lines.length; i++) {
 		root.reset_chains();
-		movement_lines[i].set_up();
+		movement_lines[i].set_up(vert_space);
 	}
 	console.log("Found movement lines: " + movement_lines.length);
 	
