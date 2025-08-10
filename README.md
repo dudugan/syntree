@@ -3,7 +3,14 @@ Adapted for SVG by Patrick Clicqué-Göbel, 2023
 (in collaboration with Sten Vikner & Ken Ramshøj Christensen). 
 Latest previous revision of the page: 2024-03-27 by Rowan Ackerman.
 
-Currently being adapted (downsized and backended) by me (David Garsten) for use in [my linguistics notes markup language](https://github.com/dudugan/class-notes).
+Downsized and backended by me (David Garsten) for use in [my linguistics notes markup language](https://github.com/dudugan/class-notes).
+
+The goal of my version is to create a backend syntax tree generator
+which will turn markup ('\t [S [NP This] [VP [V is] [^NP a wug]]] \t', for example) into an svg tree with customizable options. This generator should be able
+to generate multiple trees on the same page (something not available in the original). 
+
+In modifying the generator, I changed the main function (go()) to output
+svgs directly rather than sending the svg to the DOM with side-effects. 
 
 --------
 
