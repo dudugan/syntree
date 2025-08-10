@@ -306,77 +306,64 @@ function go(str, font_size, term_font, nonterm_font, vert_space, hor_space, colo
 		open--;
 	}
 
-	console.log("Cleaned tree: " + str);
+	console.log("Cleaned tree string: " + str);
 	
 	var root = parse(str);
-		console.log("Root value: " + root.value);
+		console.log("Root: " + root.value);
 	root.set_siblings(null);
 	root.check_triangle();
 	
-	var canvas;
-	var ctx = new C2S();
-	
-	try {
-		// Make a new canvas. Required for IE compatability.
-		canvas = document.createElement("canvas");
-		// ctx = canvas.getContext('2d');
-	} catch (err) {
-		throw "canvas";
-	}
+	var ctx = new C2S(); // canvas2svg context: records drawing operations
 
 	// Find out dimensions of the tree.
 	root.set_width(ctx, vert_space, hor_space, term_font, nonterm_font);
-		console.log("Set width: " + root.left_width + ", " + root.right_width);
 	root.assign_location(0, 0, font_size, term_lines, vert_space);
-		console.log("Assigned location");
 	root.find_height();
-	var output = $("#out");
 	
-	var movement_lines = new Array();
+	const movement_lines = [];
 	root.find_movement(movement_lines, root);
-	for (var i = 0; i < movement_lines.length; i++) {
+	for (let i = 0; i < movement_lines.length; i++) {
 		root.reset_chains();
 		movement_lines[i].set_up();
 	}
+	console.log("Found movement lines: " + movement_lines.length);
 	
-	// Set up the canvas.
+	// compute width and height
 	var width = root.left_width + root.right_width + 2 * margin;
 	var height = root.max_y + font_size + 2 * margin;
 	// Problem: movement lines may protrude from bottom.
-	for (var i = 0; i < movement_lines.length; i++)
+	for (let i = 0; i < movement_lines.length; i++)
 		if (movement_lines[i].max_y == root.max_y) {
 			height += vert_space; break;
 		}
+	console.log("Canvas size: " + width + " x " + height);
 	
-	canvas.id = "canvas";
-	canvas.width = width;
-	canvas.height = height;
 	ctx.width = width;
 	ctx.height = height;
 	ctx.fillStyle = "rgb(255, 255, 255)";
 	ctx.fillRect(0, 0, width, height);
 	ctx.fillStyle = "rgb(0, 0, 0)";
 	ctx.textAlign = "center";
-	var x_shift = Math.floor(root.left_width + margin);
-	var y_shift = Math.floor(font_size + margin);
+
+	const x_shift = Math.floor(root.left_width + margin);
+	const y_shift = Math.floor(font_size + margin);
 	ctx.translate(x_shift, y_shift);
 	
+	// draw tree
  	root.draw(ctx, font_size, term_font, nonterm_font, color, term_lines);
-	for (var i = 0; i < movement_lines.length; i++)
+	for (let i = 0; i < movement_lines.length; i++){ 
 		if (movement_lines[i].should_draw) movement_lines[i].draw(ctx);
+	}
 
+	const svg = ctx.getSvg(); // returns the live SVGElement
 
-	var svg = ctx.getSvg();
+	svg.setAttribute("width", String(width));
+	svg.setAttribute("height", String(height));
 
-	svg.setAttribute("width", width);
-	svg.setAttribute("height", height);
-	output.empty();
-	output.append(svg);
+	// helpful for scaling if you embed directly
+	svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
 
-	// return Canvas2Image.saveAsPNG(canvas, true);
-	// console.log(ctx.getSvg())
-	// var out = ctx.getSerializedSvg();
-	// return ctx.getSvg();
+	return svg; 
 }
 
 function subscriptify(in_str) {
