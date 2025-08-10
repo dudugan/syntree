@@ -122,9 +122,9 @@ Node.prototype.draw = function(ctx, font_size, term_font, nonterm_font, color, t
 		
 	ctx.fillStyle = "black";
 	if (color) {
-		ctx.fillStyle = "purple";
+		ctx.fillStyle = termColor;
 		if (this.has_children)
-			ctx.fillStyle = "royalblue";
+			ctx.fillStyle = nontermColor;
 	}
 	
 	ctx.fillText(this.value, this.x, this.y);
