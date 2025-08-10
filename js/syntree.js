@@ -122,9 +122,9 @@ Node.prototype.draw = function(ctx, font_size, term_font, nonterm_font, color, t
 		
 	ctx.fillStyle = "black";
 	if (color) {
-		ctx.fillStyle = "green";
+		ctx.fillStyle = "purple";
 		if (this.has_children)
-			ctx.fillStyle = "blue";
+			ctx.fillStyle = "royalblue";
 	}
 	
 	ctx.fillText(this.value, this.x, this.y);
@@ -340,9 +340,9 @@ function go(str, font_size, term_font, nonterm_font, vert_space, hor_space, colo
 	
 	ctx.width = width;
 	ctx.height = height;
-	ctx.fillStyle = "rgb(255, 255, 255)";
+	ctx.fillStyle = "#fcfad1";
 	ctx.fillRect(0, 0, width, height);
-	ctx.fillStyle = "rgb(0, 0, 0)";
+	ctx.fillStyle = "#222";
 	ctx.textAlign = "center";
 
 	const x_shift = Math.floor(root.left_width + margin);
